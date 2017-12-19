@@ -1,6 +1,5 @@
 class SearchDocumentsController < ApplicationController
   before_action :logged_in_user, only: %i(search_deleted search_reported)
-  before_action :checked_admin, only: :search_reported
   before_action :correct_user, only: :search_deleted
 
   def search_name
@@ -17,6 +16,7 @@ class SearchDocumentsController < ApplicationController
   def search_reported
     @reports = Comment.status_report(true).group_by(&:document_id)
     @documents = Document.search_id(@reports.keys).paginate page: params[:page]
+    authorize! :read, @user
   end
 
   def search_deleted

@@ -11,7 +11,7 @@
       <ul class="media-date reviews list-inline">
         <%= time_ago_in_words comment.created_at %>
 
-        <% if current_user? comment.user %>
+        <% if can? :destroy, comment %>
           <%= link_to t(".del"), document_comment_path(@document,id: comment.id), method: :delete,
             class: "btn btn-warning btn-circle text-uppercase" %>
         <% end %>

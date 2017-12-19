@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
+
   def create
     @category = current_user.categories.build
     @category.style = params[:style]

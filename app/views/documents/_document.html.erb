@@ -7,7 +7,7 @@
     <%= t ".download_times", times: document.history_downloads.size %></br>
     <%= t ".posted", time: time_ago_in_words(document.created_at) %>
     <% unless document.deleted_at? %>
-      <% if current_user? document.user %>
+      <% if can? :destroy, document %>
         | <%= link_to document, method: :delete, data: {confirm: t(".confirm")} do %>
           <span class="glyphicon glyphicon-trash"></span>
         <% end %>

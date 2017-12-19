@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :logged_in_user
   before_action :find_favorite, only: %i(destroy)
+  authorize_resource
 
   def index
     if params[:format]

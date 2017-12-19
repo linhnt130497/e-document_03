@@ -1,7 +1,9 @@
 class TransactionsController < ApplicationController
+  authorize_resource
+
   def create
     @user = current_user
-    @transaction = current_user.transactions.new params_transaction
+    @transaction = current_user.transactions.new transaction_params
     unless @user && @transaction && @transaction.save
       @transaction.errors.add :save, t("transaction.save_fail")
     end
@@ -11,7 +13,7 @@ class TransactionsController < ApplicationController
 
   private
 
-  def params_transaction
+  def transaction_params
     params.permit :coin, :cost_at_buy
   end
 end

@@ -33,7 +33,7 @@
               <li><%= link_to t(".friends"), friends_path(user_id: current_user.id) %></li>
               <li><%= link_to t(".history"), history_downloads_path %></li>
               <li><%= link_to t(".favorites"), favorites_path %></li>
-              <% if current_user.is_admin? %>
+              <% if can? :manage, :all %>
                 <li class="divider"></li>
                 <li><%= link_to t(".doc_report"), search_report_path %></li>
                 <li><%= link_to t(".category"), admin_categories_path %></li>

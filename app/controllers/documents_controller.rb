@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
   before_action :find_document, only: %i(destroy show)
   before_action :load_data_comment, only: :show
   before_action :add_to_history_view, only: :show
+  authorize_resource
 
   def show
     @document = Document.find_by id: params[:id]
@@ -14,10 +15,10 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    if current_user.is_admin? && document_illegal?(@document)
+    if document_illegal? @document
       @document.update_attribute :is_illegal, true
       delete_document @document
-    elsif correct_document?(@document)
+    elsif correct_document? @document
       delete_document @document
     else
       flash[:danger] = t "documents.destroy.fail"
@@ -32,7 +33,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = current_user.documents.new params_document
+    @document = current_user.documents.new document_params
     upload_in_month = current_user.documents
       .in_period_upload(Time.zone.now.beginning_of_month, Time.zone.now.end_of_month)
     if upload_in_month.size < Settings.documents.max_upload_in_month
@@ -79,7 +80,7 @@ class DocumentsController < ApplicationController
     redirect_to root_url
   end
 
-  def params_document
+  def document_params
     params.require(:document).permit :category_id, :name_document, :content
   end
 
