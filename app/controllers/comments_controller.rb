@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_comment, only: :destroy
+  authorize_resource
 
   def create
     if params[:is_report] == "true"
@@ -21,7 +22,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def params_comment
+  def comment_params
     params.require(:comment).permit :content, :document_id, :reply_id
   end
 
@@ -55,12 +56,12 @@ class CommentsController < ApplicationController
     redirect_to root_url
   end
 
-  def params_report
+  def report_params
     params.permit :content, :document_id, :is_report
   end
 
   def create_report
-    @comment = current_user.comments.new params_report
+    @comment = current_user.comments.new report_params
     @document = Document.find_by id: params[:document_id]
     unless @document && @comment.save && @comment
       @comment.errors.add :save, t("categories.create.save_fail")
@@ -70,7 +71,7 @@ class CommentsController < ApplicationController
 
   def create_comments
     find_document params[:document_id]
-    @comment = current_user.comments.new params_comment
+    @comment = current_user.comments.new comment_params
     if @comment.save
       load_data_comment
       reponse_action

@@ -28,3 +28,5 @@ history_downloads:
   max_down_free: 3
   cost_per_down: 10
   coin_owner_plus: 1
+namespace:
+  admin: "Admin"

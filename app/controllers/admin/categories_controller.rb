@@ -1,14 +1,10 @@
 module Admin
   class CategoriesController < ApplicationController
     before_action :find_category, only: %i(destroy update)
-    before_action :check_admin, only: %i(destroy update)
+    authorize_resource
 
     def index
-      if current_user.is_admin?
-        @categories = Category.order_by_updated_at.paginate page: params[:page]
-      else
-        flash[:danger] = t ".not_admin"
-      end
+      @categories = Category.order_by_updated_at.paginate page: params[:page]
     end
 
     def destroy
@@ -36,11 +32,6 @@ module Admin
     def category_destroy category
       return unless category.destroy
       render json: {success: true, response_text: t(".success")}
-    end
-
-    def check_admin
-      return if current_user.is_admin?
-      render json: {success: false, response_text: t(".not_admin")}
     end
   end
 end

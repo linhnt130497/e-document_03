@@ -1,9 +1,9 @@
 module Admin
   class TransactionsController < ApplicationController
     before_action :check_admin_json, only: %i(update destroy)
-    before_action :check_admin, only: :index
     before_action :find_transaction_user, only: %i(update destroy)
     before_action :check_transaction_not_own, only: %i(update destroy)
+    load_and_authorize_resource
 
     def index
       @transactions = Transaction.exception_user(current_user.id).
@@ -38,12 +38,6 @@ module Admin
     def check_admin_json
       return if current_user.is_admin?
       render json: {success: false, response_text: t(".not_admin")}
-    end
-
-    def check_admin
-      return if current_user.is_admin?
-      flash[:danger] = t ".not_admin"
-      redirect_to root_url
     end
 
     def find_transaction_user

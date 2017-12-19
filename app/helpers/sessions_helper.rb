@@ -40,9 +40,4 @@ module SessionsHelper
     cookies.delete :user_id
     cookies.delete :remember_token
   end
-
-  def checked_admin
-    return if current_user.is_admin?
-    flash[:warning] = t "sessions.flash.not_admin"
-  end
 end
