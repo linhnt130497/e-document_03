@@ -1,5 +1,5 @@
 class HistoryDownloadsController < ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
   before_action :find_document, only: :create
   authorize_resource
 

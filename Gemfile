@@ -30,6 +30,8 @@ gem "jquery-turbolinks"
 gem "figaro"
 gem "whenever", require: false
 gem "cancancan"
+gem "devise"
+gem "pry-rails", group:"development"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

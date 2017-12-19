@@ -1,15 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :add_params_devise, if: :devise_controller?
   include SessionsHelper
   include CommentsHelper
   include DocumentsHelper
   include UsersHelper
-
-  def logged_in_user
-    return if is_loged_in?
-    flash[:danger] = t "users.flash.danger_login"
-    redirect_to login_url
-  end
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:danger] = exception.message
@@ -26,5 +21,13 @@ class ApplicationController < ActionController::Base
     controller_name_segments = params[:controller].split("/")
     controller_name_segments.pop
     controller_name_segments.join("/").camelize
+  end
+
+  protected
+
+  def add_params_devise
+    devise_parameter_sanitizer.permit(:sign_up,
+      keys: %i(name avatar coin up_count down_count))
+    devise_parameter_sanitizer.permit(:account_update, keys: %i(name avatar))
   end
 end

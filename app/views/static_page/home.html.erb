@@ -1,5 +1,5 @@
 <% provide :title, t(".home") %>
-<% if is_loged_in? %>
+<% if user_signed_in? %>
 <div class="row">
   <aside class="col-md-4">
     <%= render "shared/user_info" %>

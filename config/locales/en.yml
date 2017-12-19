@@ -330,3 +330,74 @@ en:
       update:
         success: "Confirm Success"
         fail: "Confirm failure"
+
+  devise:
+    mailer:
+      confirmation_instructions:
+        welcome: "Welcome"
+        greeting: "You can confirm your account email through the link below:"
+        confirm: "Confirm my account"
+      email_changed:
+        hello: "Hello"
+        greeting: "We're contacting you to notify you
+          that your email is being changed to"
+      password_change:
+        hello: "Hello"
+        greeting: "We're contacting you to
+          notify you that your password has been changed."
+      reset_password_instructions:
+        hello: "Hello"
+        greeting: "Someone has requested a link to change your password.
+          You can do this through the link below."
+        change: "Change my password"
+        content: "If you didn't request this, please ignore this email.
+          Your password won't change until you access the
+          link above and create a new one."
+      unlock_instructions:
+        hello: "Hello"
+        greeting: "Your account has been locked due to an excessive
+          number of unsuccessful sign in attempts."
+        content: "Click the link below to unlock your account:"
+        unlock: "Unlock my account"
+    confirmations:
+      new:
+        head: "Resend confirmation instructions"
+    passwords:
+      edit:
+        head: "Change your password"
+        password: "New password"
+        confirm: "Confirm new password"
+        change: "Change my password"
+      new:
+        head: "Forgot your password?"
+        submit: "Send me reset password instructions"
+    registrations:
+      edit:
+        edit: "Edit"
+        cancel: "Cancel my account"
+        confirm: "Are you sure?"
+        back: "Back"
+        introduce: "(leave blank if you don't want to change it)"
+        minimun_password: "characters minimum"
+        warning_confirm: "Currently waiting confirmation for:"
+        warning_confirm_password: "(we need your
+          current password to confirm your changes)"
+        unhappy: "Unhappy?"
+        update: "Update"
+      new:
+        title: "Sign Up"
+        minimun_password: "(%{value} characters minimum)"
+    sessions:
+      new:
+        head: "Log in"
+    shared:
+      links:
+        log_in: "Log in"
+        sign_up: "Sign up"
+        forgot: "Forgot your password?"
+        resend_confirm: "Didn't receive confirmation instructions?"
+        resend_unlock: "Didn't receive unlock instructions?"
+        sign_up_with: "Sign up with %{value}"
+    unlocks:
+      new:
+        resend_unlock: "Resend unlock instructions"
