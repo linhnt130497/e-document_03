@@ -13,7 +13,7 @@ module Admin
     def update
       if @transaction.update_attributes(is_confirm: true)
         update_coin
-        UserMailer.added_coin(@user, @transaction).deliver_now
+        UserMailer.delay.added_coin(@user, @transaction)
         render json: {success: true, response_text: t(".success")}
       else
         render json: {success: false, response_text: t(".fail")}
@@ -22,7 +22,7 @@ module Admin
 
     def destroy
       if @transaction.destroy
-        UserMailer.ignore_transaction(@user, @transaction).deliver_now
+        UserMailer.delay.ignore_transaction(@user, @transaction)
         render json: {success: true, response_text: t(".success")}
       else
         render json: {success: false, response_text: t(".fail")}
