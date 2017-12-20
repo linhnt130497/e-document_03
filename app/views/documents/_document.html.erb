@@ -12,7 +12,7 @@
           <span class="glyphicon glyphicon-trash"></span>
         <% end %>
       <% end %> </br>
-      <% if is_loged_in? %>
+      <% if user_signed_in? %>
         <%= link_to t(".view_detail") , document_path(document.id) %> |
       <% end %>
       <%= link_to document.content.url do %>

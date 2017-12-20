@@ -7,7 +7,7 @@ User.create!(name:  "Admin",
              coin: 100,
              is_admin: true)
 
-50.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "user#{n+1}@gmail.com"
   password = "123456"
@@ -21,7 +21,7 @@ User.create!(name:  "Admin",
 end
 
 users = User.order(:created_at).take(6)
-10.times do |n|
+2.times do |n|
   users.each { |user| Friend.create!(
     is_accept: true,
     sender_id: user.id,

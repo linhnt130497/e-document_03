@@ -384,10 +384,6 @@ aside {
   width: 300px;
 }
 
-input[type="submit"] {
-  width: 120px;
-}
-
 .reply-date {
   float: right;
 }
@@ -416,4 +412,13 @@ input[type="submit"] {
 
 .name {
   margin-top: 15px;
+}
+
+/* flash */
+.alert-alert {
+  @extend.alert-danger;
+}
+
+.alert-notice {
+  @extend.alert-info;
 }
