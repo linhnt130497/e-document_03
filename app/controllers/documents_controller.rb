@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
   before_action :find_document, only: %i(destroy show)
   before_action :load_data_comment, only: :show
   before_action :add_to_history_view, only: :show

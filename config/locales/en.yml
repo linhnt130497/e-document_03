@@ -95,6 +95,23 @@ en:
       coins: "Coins"
       document_delete: "Document delete"
   users:
+    confirm:
+      btn_resend: "Resend"
+    mailler:
+      resend_confirm: "Resend confirmation instructions"
+      welcome: "Welcome %{email}!"
+      main_welcome: "You can confirm your account email through the link below:"
+      link_confirm: "Confirm my account"
+      hello: "Hello %{email}"
+      notice: "We're contacting you to notify you that your password has been changed."
+      content: "Someone has requested a link to change your password. You can do this through the link below."
+      link_change: "Change my password"
+      notice_change_pass: "If you didn't request this, please ignore this email. </br> Your password won't change until you access the link above and create a new one."
+    password:
+      confirm: "Confirm new password"
+      new_pass: "New password"
+      change_pass: "Change your password"
+      btn_send: "Send me reset password instructions"
     add_friend:
       send_request: "Add friend"
     new:
@@ -105,6 +122,10 @@ en:
       create_success: "Create success"
       create_error: "Can't create create user"
       not_login: "Not Login"
+      min_pass: "(%{min} characters minimum)"
+      for_got: "Forgot your password?"
+      not_receive_confirm: "Didn't receive confirmation instructions?"
+      not_receive_unlock: "Didn't receive unlock instructions?"
     flash:
       danger_login: "Please login"
       error_show: "Can't find user"
@@ -117,9 +138,16 @@ en:
       accept: "Accept"
       title: "Users"
     edit:
-      title: "Edit"
+      title: "Edit %{resource}"
+      notice: "(leave blank if you don't want to change it)"
       btn_save: "Update"
       str1: "Edit Profile User"
+      waiting: "Currently waiting confirmation for: %{resource}"
+      notice_pass: "(we need your current password to confirm your changes)"
+      del_title: "Cancel my account"
+      del_btn: "Canncel account"
+      confirm: "Are you sure?"
+      back: "Back"
     update:
       success: "Profile updated"
       admin_success: "Upgrade Admin Success"

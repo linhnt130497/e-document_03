@@ -2,7 +2,7 @@
 <div class = "row">
   <div class = "col-md-6 col-md-offset-3">
     <div class="wrapper">
-      <%= form_for :session, url: login_path, html: {class: "form-login"} do |f| %>
+      <%= form_for :session, url: user_session_path, html: {class: "form-login"} do |f| %>
 
         <h1><%= t ".title" %></h1>
 
@@ -17,7 +17,7 @@
 
         <%= f.submit t(".btlogin"), class: "btn btn-lg btn-primary btn-block" %>
 
-        <p><%= t ".sign_up" %> <%= link_to t(".link_signup"), signup_path %></p>
+        <p><%= t ".sign_up" %> <%= link_to t(".link_signup"), user_session_path %></p>
       <% end %>
     </div>
   </div>

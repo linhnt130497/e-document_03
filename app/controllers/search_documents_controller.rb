@@ -1,5 +1,5 @@
 class SearchDocumentsController < ApplicationController
-  before_action :logged_in_user, only: %i(search_deleted search_reported)
+  before_action :authenticate_user!, only: %i(search_deleted search_reported)
   before_action :checked_admin, only: :search_reported
   before_action :correct_user, only: :search_deleted
 

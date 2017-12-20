@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :find_user, only: :destroy
-    before_action :logged_in_user, only: %i(index destroy)
+    before_action :authenticate_user!, only: %i(index destroy)
     authorize_resource
 
     def index

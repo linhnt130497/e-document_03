@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, except: %i(new create index)
-  before_action :logged_in_user, except: %i(create new)
+  before_action :authenticate_user!, except: %i(create new)
   authorize_resource
 
   def edit; end

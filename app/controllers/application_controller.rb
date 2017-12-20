@@ -5,11 +5,7 @@ class ApplicationController < ActionController::Base
   include DocumentsHelper
   include UsersHelper
 
-  def logged_in_user
-    return if is_loged_in?
-    flash[:danger] = t "users.flash.danger_login"
-    redirect_to login_url
-  end
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |_exception|
     flash[:warning] = t "cancancan.exception"
@@ -26,5 +22,13 @@ class ApplicationController < ActionController::Base
     controller_name_segments = params[:controller].split("/")
     controller_name_segments.pop
     controller_name_segments.join("/").camelize
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    added_attrs = %i(name avatar)
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 end

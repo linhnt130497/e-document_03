@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
   before_action :find_user, only: %i(show destroy)
   before_action :find_friend, only: :update
   before_action :correct_user, only: :show
