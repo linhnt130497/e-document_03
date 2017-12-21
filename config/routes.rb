@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
   root "static_page#home"
   post "/signup", to: "users#create"
   get "/signup", to: "users#new"

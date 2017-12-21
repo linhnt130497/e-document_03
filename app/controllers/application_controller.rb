@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def add_params_devise
     devise_parameter_sanitizer.permit(:sign_up,
-      keys: %i(name avatar coin up_count down_count))
+      keys: %i(name avatar coin up_count down_count uid provider))
     devise_parameter_sanitizer.permit(:account_update, keys: %i(name avatar))
   end
 end

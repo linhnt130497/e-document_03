@@ -2,6 +2,7 @@
   <h1>
     <%= link_to @document.name_document , @document.content.url %>
   </h1>
+  <%= social_share_button_tag @document.name_document %>
   <%= t "documents.document.upload_by", name: @document.user.name %>
   <span class="timestamp">
     <%= t "documents.document.posted", time: time_ago_in_words(@document.created_at) %>
