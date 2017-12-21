@@ -33,6 +33,8 @@ gem "cancancan"
 gem "devise"
 gem "pry-rails", group:"development"
 gem "delayed_job_active_record"
+gem "simple_form"
+gem "friendly_id", "~> 5.1.0"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

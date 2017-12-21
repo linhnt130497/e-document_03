@@ -13,7 +13,7 @@
         <% end %>
       <% end %> </br>
       <% if user_signed_in? %>
-        <%= link_to t(".view_detail") , document_path(document.id) %> |
+        <%= link_to t(".view_detail") , document_path(document) %> |
       <% end %>
       <%= link_to document.content.url do %>
         <span class="glyphicon glyphicon-eye-open"></span>
