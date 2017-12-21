@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
     unless @user && @transaction && @transaction.save
       @transaction.errors.add :save, t("transaction.save_fail")
     end
-    UserMailer.buy_coin(@user, @transaction).deliver_now
+    UserMailer.delay.buy_coin @user, @transaction
     render partial: "shared/user_info"
   end
 

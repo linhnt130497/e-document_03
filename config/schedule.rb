@@ -8,3 +8,7 @@ end
 every 1.months do
   rake "send_static_end_month"
 end
+
+every 1.minutes do
+  rake "jobs:work"
+end
