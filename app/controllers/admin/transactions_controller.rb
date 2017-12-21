@@ -5,8 +5,8 @@ module Admin
     authorize_resource
 
     def index
-      @transactions = Transaction.exception_user(current_user.id).
-        order_by_created_at.status_confirm false
+      @transactions = Transaction.exception_user(current_user.id)
+        .order_by_created_at.status_confirm false
     end
 
     def update

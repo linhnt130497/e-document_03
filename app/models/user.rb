@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :omniauthable, omniauth_providers: %i(facebook google_oauth2)
 
   has_many :transactions, dependent: :nullify
   has_many :favorites, dependent: :destroy
@@ -29,6 +30,29 @@ class User < ApplicationRecord
   scope :status_admin, ->(status){where "is_admin = ?", status}
   scope :not_login, ->(datetime){where "current_sign_in_at < ?", datetime}
   scope :search_users, ->(name_search){where "name LIKE ?", "%#{name_search}%"}
+
+  def self.new_with_session params, session
+    super.tap do |user|
+      if (data = session["devise.facebook_data"])
+        new_user user, data
+        session.delete("devise.facebook_data")
+      elsif (data = session["devise.google_data"])
+        new_user user, data
+        session.delete("devise.google_data")
+      end
+    end
+  end
+
+  def self.new_user user, data
+    user.provider = data["provider"]
+    user.uid = data["uid"]
+    user.email = data["info"]["email"]
+    user.name = data["info"]["name"]
+  end
+
+  def self.from_omniauth auth
+    User.find_by provider: auth.provider, uid: auth.uid
+  end
 
   def send_request_friend other_user
     sending << other_user

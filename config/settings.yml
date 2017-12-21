@@ -32,3 +32,6 @@ history_downloads:
   coin_owner_plus: 1
 ability:
   namespace_admin: "Admin"
+omniauth:
+  facebook: "Facebook"
+  google: "Google"

@@ -7,7 +7,7 @@ User.create!(name:  "Admin",
              coin: 100,
              is_admin: true)
 
-50.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "user#{n+1}@gmail.com"
   password = "123456"
