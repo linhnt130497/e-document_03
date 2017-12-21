@@ -44,7 +44,7 @@ class FavoritesController < ApplicationController
   end
 
   def find_document
-    @document = Document.find_by id: params[:format]
+    @document = Document.find_by slug: params[:format]
     return if @document
     flash[:danger] = t "search_documents.search_category.not_found"
     redirect_to root_path

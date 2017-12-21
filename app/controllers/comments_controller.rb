@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
   end
 
   def find_document document_id
-    @document = Document.find_by id: document_id
+    @document = Document.find_by slug: document_id
     return if @document
     flash[:danger] = t "documents.error_find"
     redirect_to root_url

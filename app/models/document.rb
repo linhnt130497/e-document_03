@@ -1,4 +1,7 @@
 class Document < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name_document, use: [:slugged, :finders]
+
   acts_as_paranoid
   belongs_to :user
   belongs_to :category
