@@ -1,23 +1,28 @@
-User.create!(name:  "Admin",
+user = User.new(name:  "Admin",
              email: "admin@gmail.com",
              password: "123456",
              password_confirmation: "123456",
              up_count: 0,
              down_count: 0,
              coin: 100,
-             is_admin: true)
+             is_admin: true,
+             )
+user.skip_confirmation!
+user.save!
 
-10.times do |n|
+15.times do |n|
   name  = Faker::Name.name
   email = "user#{n+1}@gmail.com"
   password = "123456"
-  User.create!(name: name,
+  user = User.new(name: name,
                email: email,
                password: password,
                up_count: 0,
                down_count: 0,
                coin: 20,
                password_confirmation: password)
+  user.skip_confirmation!
+  user.save!
 end
 
 users = User.order(:created_at).take(6)
@@ -25,17 +30,17 @@ users = User.order(:created_at).take(6)
   users.each { |user| Friend.create!(
     is_accept: true,
     sender_id: user.id,
-    accepter_id: n+7)}
+    accepter_id: n+1)}
 end
 
 users = User.first
-20.times do
+25.times do
   style = Faker::Book.genre
    users.categories.create!(style: style)
 end
 
 users = User.order(:created_at).take(6)
-5.times do |n|
+20.times do |n|
   users.each do |user|
     name_document = Faker::Book.title
     user.documents.create!(
@@ -79,14 +84,4 @@ users.each do |user|
     document_id: n+1,
     reply_id: n+1)
   end
-end
-
-sender_id = User.all.pluck(:id)
-accepter_id = User.all.pluck(:id)
-20.times do |n|
-  Friend.create!(
-    is_accept: 0,
-    sender_id: sender_id[rand(sender_id.size)],
-    accepter_id: accepter_id[rand(accepter_id.size)]
-  )
 end

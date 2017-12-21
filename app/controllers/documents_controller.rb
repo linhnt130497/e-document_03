@@ -6,9 +6,8 @@ class DocumentsController < ApplicationController
   authorize_resource
 
   def show
-    @document = Document.find_by id: params[:id]
     @comment = current_user.comments.build
-    @favorite = current_user.favorites.find_by document_id: params[:id]
+    @favorite = current_user.favorites.find_by document_id: @document.id
     return if @document
     flash[:danger] = t "documents.show.fail"
     redirect_to root_url
@@ -74,7 +73,7 @@ class DocumentsController < ApplicationController
   end
 
   def find_document
-    @document = Document.find_by id: params[:id]
+    @document = Document.find_by slug: params[:id]
     return if @document
     flash[:danger] = t "documents.error_find"
     redirect_to root_url
@@ -85,7 +84,7 @@ class DocumentsController < ApplicationController
   end
 
   def correct_document? document
-    document == current_user.documents.find_by(id: params[:id])
+    document == current_user.documents.find_by(slug: params[:id])
   end
 
   def delete_document document

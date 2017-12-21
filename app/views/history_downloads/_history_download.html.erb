@@ -1,4 +1,4 @@
 <tr id="history-<%= history.id %>">
-  <td><%= link_to history.document.name_document, document_path(history.id) %></td>
+  <td><%= link_to history.document.name_document, document_path(history.document) %></td>
   <td><%= l history.created_at.localtime, format: :long %></td>
 </tr>

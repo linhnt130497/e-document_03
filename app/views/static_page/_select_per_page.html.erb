@@ -1,0 +1,5 @@
+<%= form_with url: root_path, method: :get do |f|%>
+  <%= select_tag :limit, options_from_collection_for_select(Settings.show_limit,
+    :second, :second, selected: params[:limit]),
+    id: "show-limit", onchange: "this.form.submit();" %>
+<% end %>

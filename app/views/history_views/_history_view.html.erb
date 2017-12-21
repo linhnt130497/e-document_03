@@ -1,5 +1,5 @@
 <tr id="history_view-<%= history_view.id %>">
   <td id="history_view-<%= history_view.id %>">
-    <%= link_to history_view.document.name_document, document_path(history_view) %></td>
+    <%= link_to history_view.document.name_document, document_path(history_view.document) %></td>
   <td><%= l history_view.updated_at.localtime, format: :long %></td>
 </tr>

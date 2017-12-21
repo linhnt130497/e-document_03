@@ -1,4 +1,4 @@
 <tr id="favorite-<%= favorite.id %>">
-  <td><%= link_to favorite.document.name_document, document_path(favorite) %></td>
+  <td><%= link_to favorite.document.name_document, document_path(favorite.document) %></td>
   <td><%= l favorite.created_at.localtime, format: :long %></td>
 </tr>

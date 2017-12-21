@@ -19,7 +19,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :accepting, through: :passive_friends, source: :sender
 
-  before_save :downcase_email
+  before_save :downcase_email, :set_default
 
   validates :name, presence: true, length: {maximum: Settings.user.maximum_name}
   mount_uploader :avatar, AvatarUploader
@@ -70,5 +70,11 @@ class User < ApplicationRecord
 
   def downcase_email
     self.email = email.downcase
+  end
+
+  def set_default
+    self.coin = Settings.user.default_coin
+    self.up_count = Settings.user.default_count
+    self.down_count = Settings.user.default_count
   end
 end

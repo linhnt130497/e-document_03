@@ -14,7 +14,10 @@
         <ol class="documents">
           <%= render @documents %>
         </ol>
-        <%= will_paginate @documents %>
+        <%= paginate @documents, theme: Settings.paginate.theme %>
+        <div class = "pull-right">
+          <%= render "select_per_page" %>
+        </div>
       <% end %>
     </div>
   </div>

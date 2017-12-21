@@ -18,4 +18,7 @@ class Document < ApplicationRecord
   end
 
   mount_uploader :content, DocumentUploader
+
+  extend FriendlyId
+  friendly_id :name_document, use: %i(slugged finders)
 end

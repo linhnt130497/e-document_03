@@ -21,7 +21,6 @@ gem "carrierwave", "1.1.0"
 gem "mini_magick", "4.7.0"
 gem "fog", "1.40.0"
 gem "jquery-rails"
-gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem "faker"
 gem "paranoia", "~> 2.2"
@@ -34,6 +33,9 @@ gem "devise"
 gem "social-share-button"
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
+gem "kaminari"
+gem "bootstrap-kaminari-views"
+gem "friendly_id"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
