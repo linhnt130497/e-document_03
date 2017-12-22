@@ -22,6 +22,9 @@
       <%= f.file_field :avatar, class: "form-control" %>
 
       <%= f.submit t(".title"), class: "btn btn-primary" %>
+
+      <%= f.hidden_field :provider %>
+      <%= f.hidden_field :uid %>
     <% end %>
   </div>
 </div>

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   before_create :default_user
   devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable
+         :lockable, :omniauthable, omniauth_providers: %i(facebook google_oauth2)
 
   has_many :transactions, dependent: :nullify
   has_many :favorites, dependent: :destroy
@@ -45,5 +45,28 @@ class User < ApplicationRecord
     self.coin ||= 20
     self.up_count ||= 0
     self.down_count ||= 0
+  end
+
+  def self.new_with_session params, session
+    super.tap do |user|
+      if (data = session["devise.facebook_data"])
+        new_user user, data
+        session.delete("devise.facebook_data")
+      elsif (data = session["devise.google_data"])
+        new_user user, data
+        session.delete("devise.google_data")
+      end
+    end
+  end
+
+  def self.new_user user, data
+    user.provider = data["provider"]
+    user.uid = data["uid"]
+    user.email = data["info"]["email"]
+    user.name = data["info"]["name"]
+  end
+
+  def self.from_omniauth auth
+    User.find_by provider: auth.provider, uid: auth.uid
   end
 end
