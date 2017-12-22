@@ -1,0 +1,12 @@
+<%= search_form_for @search, url: root_path, class: "form-horizontal" do |f| %>
+  <div class="form-group form-inline">
+    <%= f.label t".category" %>
+    <%= f.select :category_id_eq, options_from_collection_for_select(@categories , :id,
+      :style, @search.category_id_eq), {prompt: true}, {class: "form-control"} %>
+  </div>
+  <div class = "form-group form-inline">
+    <%= f.label t".document" %>
+    <%= f.text_field :name_document_cont, class: "form-control" %>
+    <%= f.submit t(".btn_submit"), class: "btn btn-default bt-search" %>
+  </div>
+<% end %>

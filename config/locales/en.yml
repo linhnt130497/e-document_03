@@ -66,6 +66,10 @@ en:
       home: "Home"
       title: "This is Home"
       document: "Documents"
+    search_form:
+      category: "Category"
+      document: "Document"
+      btn_submit: "Search"
   hello: "Hello world"
   title: "Edocument"
 
